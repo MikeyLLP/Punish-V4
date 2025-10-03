@@ -1,11 +1,12 @@
 package de.mikeyllp.punish.v4.velocity
 
 import com.velocitypowered.api.event.Subscribe
+import com.velocitypowered.api.event.proxy.ProxyInitializeEvent
 
 class VelocityMain constructor() {
 
     @Subscribe
-    fun onInitialization() {
+    fun onInitialization(event: ProxyInitializeEvent) {
         INSTANCE = this
     }
 
