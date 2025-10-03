@@ -6,7 +6,7 @@ import com.velocitypowered.api.event.proxy.ProxyInitializeEvent
 class VelocityMain constructor() {
 
     @Subscribe
-    fun onInitialization(event: ProxyInitializeEvent) {
+    fun onInitialization(event: ProxyInitializeEven) {
         INSTANCE = this
     }
 
