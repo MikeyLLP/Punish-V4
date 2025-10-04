@@ -9,3 +9,7 @@ velocityPluginFile {
     authors = listOf("MikeyLLP")
     version = "${project.version}"
 }
+
+dependencies {
+    api(project(":punish-v4-core"))
+}
