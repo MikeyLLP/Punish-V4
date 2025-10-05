@@ -10,13 +10,13 @@ val plugin get() = JavaPlugin.getPlugin(BukkitMain::class.java)
 
 class BukkitMain : SuspendingJavaPlugin() {
 
-    override fun onEnable() {
+    override suspend fun onEnableAsync() {
         CoreService.punishService = BukkitPunishService()
 
         punishCommand()
     }
 
-    override fun onDisable() {
+    override suspend fun onDisableAsync() {
         // Stop logic
     }
 }

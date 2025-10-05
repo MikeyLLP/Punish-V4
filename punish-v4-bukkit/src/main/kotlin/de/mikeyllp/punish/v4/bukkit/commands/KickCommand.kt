@@ -1,5 +1,8 @@
 package de.mikeyllp.punish.v4.bukkit.commands
 
+import com.github.shynixn.mccoroutine.folia.entityDispatcher
+import com.github.shynixn.mccoroutine.folia.launch
+import de.mikeyllp.punish.v4.bukkit.plugin
 import de.mikeyllp.punish.v4.bukkit.utils.PunishPermissionRegistry
 import de.mikeyllp.punish.v4.core.service.CoreService.Companion.punishService
 import dev.jorel.commandapi.CommandAPICommand
@@ -19,6 +22,8 @@ fun CommandAPICommand.kickCommand() = subcommand("kick") {
         val target: Player by args
         val reason: String by args
 
-        punishService.kickPlayer(target.uniqueId, reason)
+        plugin.launch(plugin.entityDispatcher(target)) {
+            punishService.kickPlayer(target.uniqueId, reason)
+            }
+        }
     }
-}

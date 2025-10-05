@@ -8,7 +8,10 @@ import dev.jorel.commandapi.kotlindsl.anyExecutor
 import dev.jorel.commandapi.kotlindsl.getValue
 import dev.jorel.commandapi.kotlindsl.greedyStringArgument
 import dev.jorel.commandapi.kotlindsl.subcommand
+import kotlinx.coroutines.*
 
+
+@OptIn(DelicateCoroutinesApi::class)
 fun CommandAPICommand.kickCommand() = subcommand("kick") {
     withPermission("kick.v4.velocity.command.kick")
     playerArgument("target")
@@ -18,6 +21,8 @@ fun CommandAPICommand.kickCommand() = subcommand("kick") {
         val target: Player by args
         val reason: String by args
 
-        punishService.kickPlayer(target.uniqueId, reason)
+        GlobalScope.launch {
+            punishService.kickPlayer(target.uniqueId, reason)
+        }
     }
 }
